@@ -96,3 +96,7 @@
 .keys .key.action span {
 	color: #26fed7;
 }
+
+.keys .key:hover {
+	box-shadow: inset 0px 0px 8px rgba(0, 0, 0, 0.2);
+}
