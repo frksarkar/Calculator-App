@@ -14,7 +14,7 @@ for(let key of keys){
             displayOutput.innerHTML = '';
         } else if (value == 'backspace') {
             input = input.slice(0, -1);
-            displayInput.innerHTML = input;
+            displayInput.innerHTML = cleanInput(input);
         } else if (value == '=') {
             let result = eval(input);
 
@@ -35,10 +35,34 @@ for(let key of keys){
             ){
                 input += ')';
             }
-            displayInput.innerHTML = input;
+            displayInput.innerHTML = cleanInput(input);
         } else {
             input += value;
-            displayInput.innerHTML = input;
+            displayInput.innerHTML = cleanInput(input);
         }
     })
+}
+
+function cleanInput(input){
+    const inputArray = input.split('');
+    const inputArrayLength = inputArray.length;
+
+    for (let i = 0; i < inputArrayLength; i++) {
+        if(inputArray[i] == '*'){
+            inputArray[i] = ` <span class='operator'>x</span> `
+        } else  if(inputArray[i] == '/'){
+            inputArray[i] = ` <span class='operator'>÷</span> `
+        }else  if(inputArray[i] == '+'){
+            inputArray[i] = ` <span class='operator'>+</span> `
+        }else  if(inputArray[i] == '-'){
+            inputArray[i] = ` <span class='operator'>-</span> `
+        } else  if(inputArray[i] == '%'){
+            inputArray[i] = ` <span class='operator'>%</span> `
+        } else  if(inputArray[i] == '('){
+            inputArray[i] = `<span class='operator'>(</span>`
+        } else  if(inputArray[i] == ')'){
+            inputArray[i] = `<span class='operator'>)</span>`
+        }
+    }
+    return inputArray.join('');
 }
